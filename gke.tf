@@ -70,6 +70,9 @@ resource "google_container_cluster" "gke_cluster" {
 
   node_config {
     service_account = google_service_account.service_account.email
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/cloud-platform"
+    ]
   }
 }
 
@@ -90,5 +93,8 @@ resource "google_container_node_pool" "preemptible_node_pool" {
     disk_size_gb    = "20"
     preemptible     = "true"
     service_account = google_service_account.service_account.email
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/cloud-platform"
+    ]
   }
 }
