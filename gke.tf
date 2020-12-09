@@ -39,6 +39,18 @@ resource "google_container_cluster" "gke_cluster" {
   cluster_autoscaling {
     enabled = true
 
+    resource_limits {
+      resource_type = "CPU"
+      minimum       = 1
+      maximum       = 10
+    }
+
+    resource_limits {
+      resource_type = "Memory"
+      minimum       = 4
+      maximum       = 16
+    }
+
     auto_provisioning_defaults {
       service_account = google_service_account.service_account.email
     }

@@ -4,7 +4,7 @@ steps:
     entrypoint: /bin/sh
     args: ['-c', 'gcloud auth print-access-token > access_token.txt']
 
-  # Download Helm chart from GCR
+  # Download ps-app Helm chart from GCR
   - name: alpine/helm
     env:
       - HELM_EXPERIMENTAL_OCI=1
