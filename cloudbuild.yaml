@@ -19,7 +19,9 @@ steps:
   # Make sure a bucket exists to hold state file
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
     entrypoint: /bin/sh
-    args: ['-c', 'gsutil ls gs://$_BUCKET_NAME || gsutil mb -l $_REGION -p $PROJECT_ID gs://$_BUCKET_NAME']
+    args:
+      - '-c'
+      - 'gsutil ls gs://$_BUCKET_NAME || gsutil mb -l $_REGION -p $PROJECT_ID gs://$_BUCKET_NAME'
 
   # Run terraform
   - name: hashicorp/terraform
