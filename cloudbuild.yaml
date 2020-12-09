@@ -38,3 +38,5 @@ steps:
 substitutions:
   _REGION: europe-west4
   _BUCKET_NAME: ps-infra-terraform-state-file
+
+timeout: 1200s
