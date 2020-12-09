@@ -67,6 +67,10 @@ resource "google_container_cluster" "gke_cluster" {
       disabled = false
     }
   }
+
+  node_config {
+    service_account = google_service_account.service_account.email
+  }
 }
 
 resource "google_container_node_pool" "preemptible_node_pool" {
@@ -82,8 +86,9 @@ resource "google_container_node_pool" "preemptible_node_pool" {
   location = "${var.region}-a"
 
   node_config {
-    machine_type = "n1-standard-2"
-    disk_size_gb = "20"
-    preemptible  = "true"
+    machine_type    = "n1-standard-2"
+    disk_size_gb    = "20"
+    preemptible     = "true"
+    service_account = google_service_account.service_account.email
   }
 }
