@@ -32,7 +32,6 @@ steps:
     args:
       - '-c'
       - |
-        ls -lah ./ps-app/ &&
         terraform init -upgrade -backend-config="bucket=$_BUCKET_NAME" && \
         terraform apply -auto-approve
 
