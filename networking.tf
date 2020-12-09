@@ -9,10 +9,12 @@ resource "google_compute_subnetwork" "vpc_subnetwork" {
   private_ip_google_access = true
   ip_cidr_range            = "10.156.0.0/20"
   network                  = google_compute_network.vpc_network.self_link
+
   secondary_ip_range {
     ip_cidr_range = "10.156.16.0/20"
     range_name    = "gke-pods"
   }
+
   secondary_ip_range {
     ip_cidr_range = "10.156.32.0/27"
     range_name    = "gke-services"

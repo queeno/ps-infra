@@ -53,6 +53,9 @@ resource "google_container_cluster" "gke_cluster" {
 
     auto_provisioning_defaults {
       service_account = google_service_account.service_account.email
+      oauth_scopes = [
+        "https://www.googleapis.com/auth/cloud-platform"
+      ]
     }
 
     autoscaling_profile = "BALANCED"
