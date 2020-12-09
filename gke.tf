@@ -1,5 +1,10 @@
 data "google_client_config" "current" {}
 
+resource "google_service_account" "service_account" {
+  account_id   = "gke-nodepool"
+  display_name = "GKE Nodepool"
+}
+
 resource "google_container_cluster" "gke_cluster" {
   provider = google-beta
   name     = "paymentsense"
@@ -29,6 +34,16 @@ resource "google_container_cluster" "gke_cluster" {
       cidr_block   = "0.0.0.0/0"
       display_name = "open to everywhere"
     }
+  }
+
+  cluster_autoscaling {
+    enabled = true
+
+    auto_provisioning_defaults {
+      service_account = google_service_account.service_account.email
+    }
+
+    autoscaling_profile = "BALANCED"
   }
 
   addons_config {
