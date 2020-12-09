@@ -5,6 +5,11 @@ resource "google_service_account" "service_account" {
   display_name = "GKE Nodepool"
 }
 
+resource "google_project_iam_member" "gcr_access" {
+  role   = "roles/storage.admin"
+  member = "serviceAccount:${google_service_account.service_account.email}"
+}
+
 resource "google_container_cluster" "gke_cluster" {
   provider = google-beta
   name     = "paymentsense"
