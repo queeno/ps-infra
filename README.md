@@ -36,8 +36,8 @@ Please use the Kubernetes ingress' IP address to reach the application.
 
 ## Pod horizontal autoscaler
 
-The application has already been configured to automatically autoscale horizontally based on load.
-The number of replicas will be increased as configured in the relevant resource.
+The application has already been configured to automatically autoscale horizontally based on CPU utilisation.
+The number of replicas will be increased as indicated in the `HorizontalPodAutoscaler` resource.
 
 ## Node autoscaler
 
